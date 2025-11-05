@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhlanhla Sindane - Software Development Student</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- explain -->
     <style>
         :root {
             --primary-color: #4da0ff;
@@ -35,12 +35,14 @@
             background: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            min-height: 100vh; /* This ensures the body takes at least the full height of the viewport */
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            width: 100%; /* This ensures the container takes the full width of its parent */
         }
 
         /* Header Section */
@@ -54,8 +56,8 @@
 
         .profile-section {
             display: flex;
-            flex: 1 0 600px;
-            min-width: 350px;
+            flex: 1 1 600px; /* Adjusted flex properties for better responsiveness */
+            min-width: 300px;
             position: relative;
             align-items: flex-start;
             justify-content: flex-start;
@@ -101,6 +103,7 @@
             gap: 25px;
             margin-left: 20px;
             position: relative;
+            flex: 1; /* Take remaining space */
         }
 
         .contact-item {
@@ -116,6 +119,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: var(--shadow);
+            width: 100%; /* Full width for better click area */
         }
 
         .contact-item:hover {
@@ -131,7 +135,7 @@
         }
 
         .professional-summary {
-            flex: 2 0 420px;
+            flex: 2 1 420px; /* Adjusted flex properties for better responsiveness */
             min-width: 300px;
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -212,6 +216,8 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .experience-title {
@@ -246,7 +252,7 @@
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
 
@@ -312,6 +318,7 @@
             padding: 10px 15px;
             border-radius: 18px;
             max-width: 80%;
+            word-wrap: break-word;
         }
 
         .user-message {
@@ -356,7 +363,7 @@
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
 
@@ -403,6 +410,8 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .education-title {
@@ -434,10 +443,39 @@
             left: 0;
         }
 
-        /* Responsive Design */
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) { 
+            .container {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .profile-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .profile-image-container {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .contact-info {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .contact-item {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
             .header-section {
                 flex-direction: column;
+                gap: 20px;
             }
             
             .profile-section {
@@ -456,6 +494,77 @@
             .experience-header, .education-header {
                 flex-direction: column;
                 gap: 5px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .contact-item {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            
+            .contact-item i {
+                font-size: 20px;
+            }
+            
+            .professional-summary, .content-section, .content-section2, .ai-chat {
+                padding: 15px;
+            }
+            
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
+            }
+            
+            .theme-toggle i {
+                font-size: 20px;
+            }
+            
+            .chat-messages {
+                height: 250px;
+            }
+            
+            .chat-input input, .chat-input button {
+                padding: 10px 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .profile-image-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .contact-item {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+            
+            .contact-item i {
+                font-size: 18px;
+            }
+            
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
