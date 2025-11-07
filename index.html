@@ -44,6 +44,214 @@
             padding: 20px;
             width: 100%; /* This ensures the container takes the full width of its parent */
         }
+        .job-status-bubble {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            animation: bounce 2s infinite, pulse-bubble 3s infinite;
+        }
+        .bubble-content {
+            background: linear-gradient(135deg, var(--primary-color), #2c5364);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            min-height: 60px;
+        }
+        .bubble-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(77, 160, 255, 0.6);
+        }
+
+        .bubble-icon {
+            font-size: 1.5em;
+            animation: wiggle 2s infinite;
+        }
+
+        .bubble-text {
+            font-weight: bold;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .bubble-badge {
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            font-weight: bold;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            animation: pulse-badge 1.5s infinite;
+        }
+
+        /* Expanded Job Status Banner */
+        .job-status-banner {
+            background: linear-gradient(135deg, var(--primary-color), #2c5364);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            animation: slideDown 0.5s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: transform 0.5s ease;
+        }
+
+        .job-status-banner.hidden {
+            transform: translateY(-100%);
+        }
+
+        .status-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .status-text h3 {
+            margin-bottom: 10px;
+            font-size: 0.8cm;
+        }
+        .status-text p {
+            font-size: 0.4cm;
+            opacity: 0.9;
+        }
+        .banner-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .cta-button {
+            background: white;
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+            white-space: nowrap;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0, 0.2);
+        }
+        .banner-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .banner-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        /* Animations */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes pulse-bubble {
+            0% {
+                box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(77, 160, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4);
+            }
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 7%, 14%, 21%, 28%, 35% {
+                transform: rotateZ(0);
+            }
+            10% {
+                transform: rotateZ(-5deg);
+            }
+            17% {
+                transform: rotateZ(5deg);
+            }
+            24% {
+                transform: rotateZ(-3deg);
+            }
+            31% {
+                transform: rotateZ(2deg);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
+        /*
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(77, 160, 255, 0.7);}
+            70% { box-shadow: 0 0 0 10px rgba(77, 160, 255, 0);}
+            100% { box-shadow: 0 0 0 0 rgba(77, 160, 255, 0);}
+        }
+        */
 
         /* Header Section */
         .header-section {
@@ -133,6 +341,17 @@
             text-align: center;
             color: var(--primary-color);
         }
+        .resume-download {
+            background: linear-gradient(135deg, var(--primary-color), #2c5364) !important;
+            color: white !important;
+        }
+        .resume-download i {
+            color: white !important;
+        }
+        .resume-download:hover {
+            box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4) !important;
+            transform: translateY(-3px) !important;
+        }
 
         .professional-summary {
             flex: 2 1 420px; /* Adjusted flex properties for better responsiveness */
@@ -173,6 +392,10 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             z-index: 100;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
         .theme-toggle i {
@@ -272,28 +495,47 @@
             list-style-type: none;
         }
 
-        .skill-item {
+        .skill-item.quantified {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            transition: var(--transition);
+            padding: 15px;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .skill-header {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 8px;
         }
-
-        .skill-item:hover {
-            background: rgba(77, 160, 255, 0.1);
-            transform: translateX(5px);
+        .skill-name {
+            font-weight: 600;
         }
-
-        .skill-item i {
+        .skill-level {
             color: var(--primary-color);
-            width: 20px;
-            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
         }
-
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .skill-progress {
+            height: 100%;
+            width: 0%;
+            background: var(--primary-color);
+            border-radius: 3px;
+            transition: width 1s ease-in-out;
+        }
+        .skill-evidence small {
+            color: var(--text-color);
+            opacity: 0.7;
+            font-style: italic;
+        }
         /* AI Chat Section */
         .ai-chat {
             background: var(--card-bg);
@@ -473,20 +715,50 @@
         }
 
         @media (max-width: 768px) {
+            .job-status-bubble {
+                top: 15px;
+                left: 15px;
+            }
+            .bubble-content {
+                padding: 12px 16px;
+                min-height: 55px;
+            }
+
+            .bubble-text {
+                font-size: 0.8em;
+            }
+
+            .bubble.text {
+                font-size: 0.8cm;
+            }
+
             .header-section {
                 flex-direction: column;
                 gap: 20px;
             }
             
             .profile-section {
-                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
             }
             
             .profile-image-container {
                 width: 200px;
                 height: 200px;
+                margin-bottom: 20px;
+                margin-right: 0;
             }
             
+            .contact-info {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .contact-item {
+                justify-content: center;
+            }
+
             .skills-grid, .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -503,13 +775,64 @@
             .message {
                 max-width: 90%;
             }
+
+            .status-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .theme-toggle {
+                position: fixed;
+                bottom: 20px;
+                top: auto;
+                right: 15px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .job-status-banner {
+                padding: 15px;
+            }
+            
+            .status-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .banner-actions {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .content-item, .skill-item, .chat-input button {
+                min-height: 44px; /* Ensures touch targets are large enough */
+                justify-content: center; /* Center content for better appearance on small screens */
+            }
         }
 
         @media (max-width: 576px) {
             .container {
                 padding: 10px;
             }
+            .job-status-bubble {
+                top: 10px;
+                left: 10px;
+            }
             
+            .bubble-content {
+                padding: 10px 14px;
+                min-height: 50px;
+            }
+            
+            .bubble-text {
+                display: none; /* Hide text on very small screens */
+            }
+            
+            .bubble-icon {
+                font-size: 1.3em;
+            }
+
             .profile-image-container {
                 width: 150px;
                 height: 150px;
@@ -523,14 +846,14 @@
             .contact-item i {
                 font-size: 20px;
             }
-            
+
             .professional-summary, .content-section, .content-section2, .ai-chat {
                 padding: 15px;
             }
             
             .theme-toggle {
-                width: 40px;
-                height: 40px;
+                width: 45px;
+                height: 45px;
                 top: 10px;
                 right: 10px;
             }
@@ -546,9 +869,32 @@
             .chat-input input, .chat-input button {
                 padding: 10px 15px;
             }
+
+            .job-status-banner {
+                padding: 15px;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9cm;
+            }
         }
 
         @media (max-width: 400px) {
+            .job-status-bubble {
+                top: 5px;
+                left: 5px;
+            }
+            
+            .bubble-content {
+                padding: 8px 12px;
+            }
+            
+            .bubble-badge {
+                width: 16px;
+                height: 16px;
+                font-size: 0.6em;
+            }
             .profile-image-container {
                 width: 120px;
                 height: 120px;
@@ -566,10 +912,40 @@
             .skills-grid, .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            .input, select, textarea {
+                font-size: 16px; /* Maintain readability */
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Job Status Bubble (Default State) -->
+    <div class="job-status-bubble" id="jobBubble">
+        <div class="bubble-content">
+            <div class="bubble-icon">🚀</div>
+            <div class="bubble-text">Hire Me!</div>
+            <div class="bubble-badge">1</div>
+        </div>
+    </div>
+
+    <!-- Expanded Job Status Banner -->
+    <section class="job-status-banner hidden" id="jobBanner">
+        <div class="status-content">
+            <div class="status-text">
+                <h3>🚀 Seeking AIT Training Opportunity</h3>
+                <p>Completed theoretical studies • Available immediately • Ready to contribute to your team</p>
+            </div>
+            <div class="banner-actions">
+                <a href="mailto:Nhlanhla.Sindane13@gmail.com" class="cta-button">Contact Me</a>
+                <button class="banner-close" id="bannerClose" aria-label="Close banner">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Theme Toggle Button && Moon/Sun Icon -->
     <div class="theme-toggle" id="themeToggle">
         <i class="fas fa-moon"></i>
@@ -596,9 +972,17 @@
                         <i class="fas fa-phone"></i>
                         <span>061 420 3184</span>
                     </a>
+                    <a href="Nhlanhla Sindane_Resume.pdf" download="Nhlanhla-Sindane-Resume.pdf" class="contact-item resume-download">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Download Resume (PDF)</span>
+                    </a>
                     <a href="https://github.com/Nhlanhla-Sindane" class="contact-item">
                         <i class="fab fa-github"></i>
                         <span>GitHub Profile</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nhlanhla-sindane/" class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Profile</span>
                     </a>
                     <div class="contact-item">
                         <i class="fas fa-car"></i>
@@ -663,39 +1047,174 @@
         
         <!-- Skills Section -->
         <section class="content-section">
-            <h2 class="section-title"><i class="fas fa-cogs"></i> Skills</h2>
+            <h2 class="section-title"><i class="fas fa-cogs"></i> Technical Proficiency</h2>
             
             <div class="skills-grid">
                 <div class="skills-category">
                     <h3><i class="fas fa-laptop-code"></i> Programming & Development</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item"><i class="fas fa-check"></i> C# (Intermediate)</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> SQL & Databases</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> HTML/CSS</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> ASP.NET (Actively Learning)</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> Pseudocode & Flowcharts</li>
-                    </ul>
+
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">C# & .NET</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="70"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: Console apps, Windows Forms, ADO.NET integration</small>
+                    </div>
                 </div>
                 
-                <div class="skills-category">
-                    <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item"><i class="fas fa-check"></i> SQL Server</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> Visual Studio</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> ADO.NET</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> Debugging & Troubleshooting</li>
-                    </ul>
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">SQL & Database Design</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="70"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: Designed & optimized queries, tables, and relational databases in SQL Server 2014</small>
+                    </div>
                 </div>
-                
-                <div class="skills-category">
+
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">HTML/CSS</span>
+                        <span class="skill-level">Beginner</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="60"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: This responsive portfolio/resume, CSS Grid/Flexbox</small>
+                    </div>
+                </div>
+
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">JavaScript</span>
+                        <span class="skill-level">Beginner/Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="50"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: The interactive features displayed on this site.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">SQL Server</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="70"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: Database design and query optimization</small>
+                    </div>
+                </div>
+            
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">Visual Studio & Visual Studio Code</span>
+                        <span class="skill-level">Proficient</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="80"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: Primary development environment</small>
+                    </div>
+                </div>
+
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">ADO.NET</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="65"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: Database integration in C# applications</small>
+                    </div>
+                </div>
+
+                <div class="skill-item quantified">
+                    <div class="skill-header">
+                        <span class="skill-name">Debugging & Troubleshooting</span>
+                        <span class="skill-level">Proficient</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-level="75"></div>
+                    </div>
+                    <div class="skill-evidence">
+                        <small>Evidence: Problem-solving in development projects</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category">
                     <h3><i class="fas fa-users"></i> Soft Skills</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item"><i class="fas fa-check"></i> Interpersonal & Communication</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> Problem-solving</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> Leadership & Teamwork</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> Attention to detail</li>
-                        <li class="skill-item"><i class="fas fa-check"></i> Adaptability</li>
-                    </ul>
+                    <div class="skill-item quantified">
+                        <div class="skill-header">
+                            <span class="skill-name">Interpersonal & Communication</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="90"></div>
+                        </div>
+                        <div class="skill-evidence">
+                            <small>Evidence: Team collaboration, client interactions</small>
+                        </div>
+                    </div>
+
+                   <div class="skill-item quantified">
+                        <div class="skill-header">
+                            <span class="skill-name">Problem-solving</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="85"></div>
+                        </div>
+                        <div class="skill-evidence">
+                            <small>Evidence: Technical troubleshooting, analytical thinking</small>
+                        </div>
+                    </div> 
+
+                    <div class="skill-item quantified">
+                        <div class="skill-header">
+                            <span class="skill-name">Leadership & Teamwork</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="75"></div>
+                        </div>
+                        <div class="skill-evidence">
+                            <small>Evidence: Chess club founder, sports committee</small>
+                        </div>
+                    </div>
+
+                    <div class="skill-item quantified">
+                        <div class="skill-header">
+                            <span class="skill-name">Adaptability</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-level="85"></div>
+                        </div>
+                        <div class="skill-evidence">
+                            <small>Evidence: Learning new technologies quickly</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -737,7 +1256,7 @@
         <!-- AI Chat Section -->
         <section class="ai-chat">
             <h2 class="section-title"><i class="fas fa-robot"></i> Ask My AI Assistant</h2>
-            <p>This AI agent can answer questions about my skills, experience, and background.</p>
+            <p>My AI agent can answer questions about my skills, experience, and background.</p>
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai-message">
                     Hello! I'm Nhlanhla's AI assistant. You can ask me questions about his skills, work experience, education, or anything else you'd like to know about him. How can I help you today?
@@ -777,15 +1296,64 @@
     </div>
 
     <script>
+        // Job Status Bubble & Banner Functionality
+        const jobBubble = document.getElementById('jobBubble');
+        const jobBanner = document.getElementById('jobBanner');
+        const bannerClose = document.getElementById('bannerClose');
+
+        let isBannerVisible = false;
+
+        //open the banner when bubble is clicked oin
+        jobBubble.addEventListener('click', () => {
+            if (!isBannerVisible) {
+                jobBanner.classList.remove('hidden');
+                isBannerVisible = true;
+
+                //add body padding to prevent layout shift and account for banner
+                document.body.style.paddingTop = jobBanner.offsetHeight + 'px';
+
+                //ajust the theme toggle postion
+                document.querySelector('.theme-toggle').style.top = (jobBanner.offsetHeight + 20) + 'px';
+            }
+        });
+
+        // close the banner when close button is clicked
+        bannerClose.addEventListener('click', () => {
+            if (isBannerVisible) {
+                jobBanner.classList.add('hidden');
+                isBannerVisible = false;
+
+                //remove body padding
+                document.body.style.paddingTop = '0';
+
+                //reset theme toggle position
+                document.querySelector('.theme-toggle').style.top = '20px';
+            }
+        });
+
+        // allow clicking outside the banner to close it
+        document.addEventListener('click', (event) => {
+            if (isBannerVisible && !jobBanner.contains(event.target) && !jobBubble.contains(event.target)) {
+                jobBanner.classList.add('hidden');
+                isBannerVisible = false;
+
+                //remove body padding
+                document.body.style.paddingTop = '0';
+
+                //reset theme toggle position
+                document.querySelector('.theme-toggle').style.top = '20px';
+            }
+        });
+
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
         
-        // Check for saved theme or prefer-color-scheme
+        // Check for saved theme or prefered-color-scheme
         const savedTheme = localStorage.getItem('theme') || 
             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         
-        // Apply the saved theme
+        // Apply the saved or prefered theme
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeIcon(savedTheme);
         
@@ -803,12 +1371,52 @@
             themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
         }
 
-        // AI Chat Functionality
+        // System theme synchronization
+        function syncWithSystemTheme() {
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            systemTheme.addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) { // Only if user hasn't manually set
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateThemeIcon(newTheme);
+                }
+            });
+        }
+
+        //initialize system theme sync
+        syncWithSystemTheme();
+
+        //skills animations revamped
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+
+                    //animate the progress bars to fill to their data-level
+                    const progressBar = entry.target.querySelector('.skill-progress');
+                    if (progressBar) {
+                        const level = progressBar.getAttribute('data-level');
+                        setTimeout(() => {
+                            progressBar.style.width = level + '%';
+                        }, 300); // slight delay for a nice effect
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        //see all the quantified skill items
+        document.querySelectorAll('.skill-item.quantified').forEach(item => {
+            skillObserver.observe(item);
+        });
+
+        // My AI Chat Functionality
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
         const sendButton = document.getElementById('sendButton');
         
-        // Knowledge base for the AI assistant
+        // The knowledge base for my AI assistant
         const knowledgeBase = {
             "skills": "Nhlanhla has skills in C# programming, SQL database development, HTML/CSS for web development, and is currently learning ASP.NET. He also has strong soft skills including problem-solving, communication, leadership, and adaptability.",
             "experience": "Nhlanhla worked as an Analyst at Marsh McLennan from Feb 2022 to Jan 2023. His responsibilities included resolving hardware, software, and access issues, adhering to SLAs with 80%+ on-time resolution for P2/P3 tickets, documenting solutions, and collaborating with team members and end-users.",
@@ -821,7 +1429,7 @@
             "values": "Nhlanhla values integrity, collaboration, and continuous improvement (GROWTH). He believes in the power of teamwork and is committed to delivering high-quality work while fostering positive relationships with colleagues and stakeholders."
         };
         
-        // Default responses for unrecognized questions
+        // The default responses for unrecognized questions
         const defaultResponses = [
             "I'm not sure about that specific detail. Would you like to know about Nhlanhla's skills, experience, or education instead?",
             "I don't have information on that topic. You could ask about Nhlanhla's technical skills or work experience.",
@@ -873,12 +1481,15 @@
             if (lowerMessage.includes('what') && lowerMessage.includes('person')) {
                 return knowledgeBase.personality;
             }
+            if (lowerMessage.includes('skill') || lowerMessage.includes('skills') || lowerMessage.includes('ability') || lowerMessage.includes('abilities')) {
+                return knowledgeBase.skills;
+            }
             
             if (lowerMessage.includes('job') || lowerMessage.includes('work')) {
                 return knowledgeBase.experience;
             }
             
-            if (lowerMessage.includes('study') || lowerMessage.includes('school') || lowerMessage.includes('learn')) {
+            if (lowerMessage.includes('study') || lowerMessage.includes('studying') || lowerMessage.includes('school') || lowerMessage.includes('learn') || lowerMessage.includes('learning')) {
                 return knowledgeBase.education;
             }
             
@@ -901,29 +1512,7 @@
                 sendMessage();
             }
         });
-        
-        // Animation for skill items on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all skill items
-        document.querySelectorAll('.skill-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-20px)';
-            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(item);
-        });
     </script>
 </body>
 </html>
