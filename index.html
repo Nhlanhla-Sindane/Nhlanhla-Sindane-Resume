@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhlanhla Sindane - Software Development Student</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- explain -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Where we get the icons used througout the website/webpage (from FontAwesome) -->
     <style>
+
+        /* CSS Variables for Theming across the entire website */
         :root {
             --primary-color: #4da0ff;
             --secondary-color: #2c5364;
@@ -16,13 +18,15 @@
             --transition: all 0.3s ease;
         }
 
+        /* Dark mode colors/scheme */
         [data-theme="dark"] {
-            --bg-color: #0f2027;
-            --text-color: #f0f0f0;
+            --bg-color: #0f2027;    /* Dark background when on dark mode */
+            --text-color: #f0f0f0;  /* Light text for dark mode */
             --card-bg: rgba(255, 255, 255, 0.1);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
+        /* Whole website styling */
         * {
             margin: 0;
             padding: 0;
@@ -30,7 +34,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
-
+        
+        /* Styling for the main page body */
         body {
             background: var(--bg-color);
             color: var(--text-color);
@@ -44,6 +49,8 @@
             padding: 20px;
             width: 100%; /* This ensures the container takes the full width of its parent */
         }
+
+        /* "Hire Me!" bubble in the top-left corner of the page */
         .job-status-bubble {
             position: fixed;
             top: 20px;
@@ -51,36 +58,51 @@
             z-index: 1000;
             cursor: pointer;
             animation: bounce 2s infinite, pulse-bubble 3s infinite;
+            border-radius: 50px; /* Ensures the bubble has rounded edges */
+            overflow: hidden; /* Prevents child elements from overflowing the bubble */
         }
+
+        /* Content inside the bubble */
         .bubble-content {
             background: linear-gradient(135deg, var(--primary-color), #2c5364);
             color: white;
             padding: 15px 20px;
-            border-radius: 50px;
-            box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4);
+            border-radius: 50px; /* Forces the oval shape */
+            box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4); /* creates a glow effect */
             display: flex;
             align-items: center;
             gap: 12px;
             transition: all 0.3s ease;
             min-height: 60px;
+            border: none; /* removes the rectangular looking border which is not working */
+            outline: none; /* removes the outline */
+
         }
+
+        /* to have an effect on hover or when I hover over the bubble */
         .bubble-content:hover {
             transform: scale(1.05);
             box-shadow: 0 12px 35px rgba(77, 160, 255, 0.6);
+            border-radius: 50px; /* Keeps the oval shape on hover */
         }
 
+        /* the rocket icon inside the bubble */
         .bubble-icon {
             font-size: 1.5em;
             animation: wiggle 2s infinite;
+            border-radius: 0; /* prevents child elements from inheriting the border radius */
         }
 
+        /* the text inside the bubble */
         .bubble-text {
             font-weight: bold;
             font-size: 0.9em;
             white-space: nowrap;
+            border-radius: 0; /* ensure text container does not have borders */
         }
 
-        .bubble-badge {
+        /* When you receive a notification -- Apps show that red badge with the number of notifications in it -- This is to add that, however did not like the look so removed/null -- might bring back later
+            .bubble-badge {
             background: #ff6b6b;
             color: white;
             border-radius: 50%;
@@ -95,15 +117,17 @@
             top: -5px;
             right: -5px;
             animation: pulse-badge 1.5s infinite;
-        }
+            border: none;
+        } 
+        */
 
-        /* Expanded Job Status Banner */
+        /* Expanded Job Status Banner (opens when you click the bubble) */
         .job-status-banner {
             background: linear-gradient(135deg, var(--primary-color), #2c5364);
             color: white;
             padding: 20px;
             text-align: center;
-            position: fixed;
+            position: fixed; /* Makes it stay at the top when scrolling through the page, just like Excel's Freeze Pane feature */
             top: 0;
             left: 0;
             right: 0;
@@ -123,44 +147,61 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px; /* Added gap for better spacing on wrap */
         }
+
+        .status-content > div:nth-child(2) {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .status-text h3 {
             margin-bottom: 10px;
             font-size: 0.8cm;
         }
+
         .status-text p {
             font-size: 0.4cm;
             opacity: 0.9;
         }
+
         .banner-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
+
         .cta-button {
-            background: white;
-            color: var(--primary-color);
+            /* background: white; */            /* Changed to be identical/match to Resume Download button */
+            /* color: var(--primary-color); */  /* Changed to be identical/match to Resume Download button */
             padding: 12px 25px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease;
-            white-space: nowrap;
+            white-space: nowrap;    /* this prevents the text from wrapping */
+            background: linear-gradient(135deg, var(--primary-color), #2c5364) !important;
+            color: white !important;
         }
+
+        /* glow effect when you hover over the button */
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0, 0.2);
         }
+
+        /* the close button (x) you see next to the "Letter of Confirmation" button */
         .banner-close {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.2);   /* give the button a semi transparent background */
             border: none;
             color: white;
             font-size: 1.2em;
             cursor: pointer;
             padding: 10px;
-            border-radius: 50%;
+            border-radius: 50%;                        /* makes the button circular/oval */
             min-height: 44px;
             min-width: 44px;
             display: flex;
@@ -173,7 +214,10 @@
             background: rgba(255, 255, 255, 0.3);
             transform: rotate(90deg);
         }
-        /* Animations */
+
+        /* Different Animations */
+
+        /* creates the bouncing animation on the bubble */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -186,6 +230,7 @@
             }
         }
 
+        /* creates a glow effect that pulses for the bubble */
         @keyframes pulse-bubble {
             0% {
                 box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4);
@@ -198,6 +243,7 @@
             }
         }
 
+        /* creates an effect that pulses for the red badge notification */
         @keyframes pulse-badge {
             0%, 100% {
                 transform: scale(1);
@@ -209,6 +255,7 @@
             }
         }
 
+        /* creates an animation for the rocket icon, making it wiggle */
         @keyframes wiggle {
             0%, 7%, 14%, 21%, 28%, 35% {
                 transform: rotateZ(0);
@@ -227,12 +274,13 @@
             }
         }
 
+        /* this makes the banner slide down from the top */
         @keyframes slideDown {
             from {
-                transform: translateY(-100%);
+                transform: translateY(-100%);   /* begins above the Vh (viewport) */
             }
             to {
-                transform: translateY(0);
+                transform: translateY(0);       /* ends at the normal position (top left corner) */
             }
         }
 
@@ -245,15 +293,7 @@
             }
         }
 
-        /*
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(77, 160, 255, 0.7);}
-            70% { box-shadow: 0 0 0 10px rgba(77, 160, 255, 0);}
-            100% { box-shadow: 0 0 0 0 rgba(77, 160, 255, 0);}
-        }
-        */
-
-        /* Header Section */
+        /* Header Section that has profile and contact information */
         .header-section {
             display: flex;
             flex-wrap: wrap;
@@ -262,15 +302,17 @@
             position: relative;
         }
 
+        /* profile section that has my picture and contact information */
         .profile-section {
             display: flex;
-            flex: 1 1 600px; /* Adjusted flex properties for better responsiveness */
+            flex: 1 1 600px;            /* Adjusted flex properties for better responsiveness */
             min-width: 300px;
             position: relative;
             align-items: flex-start;
             justify-content: flex-start;
         }
 
+        /* container for my pictures */
         .profile-image-container {
             position: relative;
             width: 280px;
@@ -279,6 +321,7 @@
             margin-right: 20px;
         }
 
+        /* the styling for my picture */
         .profile-image {
             width: 100%;
             height: 100%;
@@ -289,6 +332,7 @@
             transition: var(--transition);
         }
 
+        /* for my 'darkme.jpg' picture -- dark mode */
         .profile-image.shades {
             position: absolute;
             top: 0;
@@ -296,30 +340,33 @@
             opacity: 0;
         }
 
+        /* displays my 'darkme.jpg' when on dark mode */
         [data-theme="dark"] .profile-image.clear {
-            opacity: 0;
+            opacity: 0;     /* hides 'me.jpg' picture -- for light mode */
         }
 
         [data-theme="dark"] .profile-image.shades {
-            opacity: 1;
+            opacity: 1;     /* displays 'darkme.jpg' */
         }
 
+        /* section for Contact information */
         .contact-info {
             display: flex;
-            flex-direction: column;
+            flex-direction: column;     /* stacks the contact items vertically */
             justify-content: center;
             gap: 25px;
             margin-left: 20px;
             position: relative;
-            flex: 1; /* Take remaining space */
+            flex: 1;                    /* Take remaining space */
         }
 
+        /* styling for each of the contact items (name, email, phone number, etc) */
         .contact-item {
             display: flex;
             align-items: center;
             gap: 15px;
             color: var(--text-color);
-            text-decoration: none;
+            text-decoration: none;                          /* removes the link line/underline from the links */
             transition: var(--transition);
             padding: 10px 15px;
             border-radius: 30px;
@@ -327,7 +374,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: var(--shadow);
-            width: 100%; /* Full width for better click area */
+            width: 100%;                                    /* Full width for better click area */
         }
 
         .contact-item:hover {
@@ -926,7 +973,7 @@
         <div class="bubble-content">
             <div class="bubble-icon">🚀</div>
             <div class="bubble-text">Hire Me!</div>
-            <div class="bubble-badge">1</div>
+            <!--<div class="bubble-badge">1</div> -->
         </div>
     </div>
 
@@ -937,12 +984,20 @@
                 <h3>🚀 Seeking AIT Training Opportunity</h3>
                 <p>Completed theoretical studies • Available immediately • Ready to contribute to your team</p>
             </div>
+            <div>
+                <a href="Letter Of Confirmation.pdf" download="Letter-Of-Confirmation.pdf" class="cta-button">
+                <i class="fas fa-file-pdf"></i>
+                <span>Download Letter of Confirmation</span>
+                </a>
+            </div>
+            
             <div class="banner-actions">
-                <a href="mailto:Nhlanhla.Sindane13@gmail.com" class="cta-button">Contact Me</a>
+                <!--<a href="mailto:Nhlanhla.Sindane13@gmail.com" class="cta-button">Contact Me</a> -->
                 <button class="banner-close" id="bannerClose" aria-label="Close banner">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
+            
         </div>
     </section>
 
@@ -974,7 +1029,7 @@
                     </a>
                     <a href="Nhlanhla Sindane_Resume.pdf" download="Nhlanhla-Sindane-Resume.pdf" class="contact-item resume-download">
                         <i class="fas fa-file-pdf"></i>
-                        <span>Download Resume (PDF)</span>
+                        <span>Download Resume</span>
                     </a>
                     <a href="https://github.com/Nhlanhla-Sindane" class="contact-item">
                         <i class="fab fa-github"></i>
@@ -1001,6 +1056,7 @@
         <section class="content-section">
             <h2 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h2>
             
+            <!-- Experience: Analyst -->
             <div class="experience-item">
                 <div class="experience-header">
                     <div class="experience-title">Analyst | Marsh McLennan</div>
@@ -1019,6 +1075,7 @@
         <section class="content-section">
             <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
             
+            <!-- Education: Tertiary -->
             <div class="education-item">
                 <div class="education-header">
                     <div class="education-title">Software Development | Belgium Campus ITversity</div>
@@ -1033,6 +1090,7 @@
                 </ul>
             </div>
             
+            <!-- Education: High School -->
             <div class="education-item">
                 <div class="education-header">
                     <div class="education-title">Norkem Park High School</div>
@@ -1053,6 +1111,7 @@
                 <div class="skills-category">
                     <h3><i class="fas fa-laptop-code"></i> Programming & Development</h3>
 
+                <!-- Progress Bar: C# & .NET -->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">C# & .NET</span>
@@ -1066,6 +1125,7 @@
                     </div>
                 </div>
                 
+                <!-- Progress Bar: SQL & Database Design -->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">SQL & Database Design</span>
@@ -1079,6 +1139,7 @@
                     </div>
                 </div>
 
+                <!-- Progress Bar: HTML/CSS -->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">HTML/CSS</span>
@@ -1092,6 +1153,7 @@
                     </div>
                 </div>
 
+                <!-- Progress Bar: JavaScript -->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">JavaScript</span>
@@ -1109,6 +1171,7 @@
             <div class="skills-category">
                 <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
 
+                <!-- Progress Bar: SQL Server -->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">SQL Server</span>
@@ -1122,6 +1185,7 @@
                     </div>
                 </div>
             
+                <!-- Progress Bar: Visual Studio & VS Code -->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">Visual Studio & Visual Studio Code</span>
@@ -1135,6 +1199,7 @@
                     </div>
                 </div>
 
+                <!-- Progress Bar: ADO.NET -->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">ADO.NET</span>
@@ -1148,6 +1213,7 @@
                     </div>
                 </div>
 
+                <!-- Progress Bar: Debugging & Troubleshooting-->
                 <div class="skill-item quantified">
                     <div class="skill-header">
                         <span class="skill-name">Debugging & Troubleshooting</span>
@@ -1164,6 +1230,8 @@
 
             <div class="skills-category">
                     <h3><i class="fas fa-users"></i> Soft Skills</h3>
+
+                    <!-- Progress Bar: Interpersonal & Communication -->
                     <div class="skill-item quantified">
                         <div class="skill-header">
                             <span class="skill-name">Interpersonal & Communication</span>
@@ -1177,6 +1245,7 @@
                         </div>
                     </div>
 
+                    <!-- Progress Bar: Problem-solving -->
                    <div class="skill-item quantified">
                         <div class="skill-header">
                             <span class="skill-name">Problem-solving</span>
@@ -1190,6 +1259,7 @@
                         </div>
                     </div> 
 
+                    <!-- Progress Bar: Leadership & Teamwork -->
                     <div class="skill-item quantified">
                         <div class="skill-header">
                             <span class="skill-name">Leadership & Teamwork</span>
@@ -1203,6 +1273,7 @@
                         </div>
                     </div>
 
+                    <!-- Progress Bar: Adaptability -->
                     <div class="skill-item quantified">
                         <div class="skill-header">
                             <span class="skill-name">Adaptability</span>
@@ -1224,6 +1295,8 @@
             <h2 class="section-title"><i class="fas fa-code"></i> Technical Projects</h2>
             
             <div class="projects-grid">
+
+                <!-- Card: C# Console Applications -->
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">C# Console Applications</h3>
@@ -1233,6 +1306,7 @@
                     </div>
                 </div>
                 
+                <!-- Card: SQL Database Design -->
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">SQL Database Design</h3>
@@ -1242,6 +1316,7 @@
                     </div>
                 </div>
                 
+                <!-- Card: Web Development -->
                 <div class="project-card">
                     <div class="project-header">
                         <h3 class="project-title">Web Development</h3>
@@ -1253,13 +1328,13 @@
             </div>
         </section>
         
-        <!-- AI Chat Section -->
+        <!-- My AI Chat Section -->
         <section class="ai-chat">
             <h2 class="section-title"><i class="fas fa-robot"></i> Ask My AI Assistant</h2>
             <p>My AI agent can answer questions about my skills, experience, and background.</p>
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai-message">
-                    Hello! I'm Nhlanhla's AI assistant. You can ask me questions about his skills, work experience, education, or anything else you'd like to know about him. How can I help you today?
+                    Hey there! I'm Nhlanhla's AI assistant. You can ask me questions about his skills, work experience, education, or anything else you'd like to know about him. How can I help you today?
                 </div>
             </div>
             <div class="chat-input">
@@ -1268,10 +1343,11 @@
             </div>
         </section>
         
-        <!-- Extracurricular Activities -->
+        <!-- Extracurricular Activities Section -->
         <section class="content-section2">
             <h2 class="section-title"><i class="fas fa-users"></i> Leadership & Extracurricular Activities</h2>
             
+            <!-- Experience: Chess Club -->
             <div class="experience-item">
                 <div class="experience-header">
                     <div class="experience-title">Chess Club Co-Founder & Leader | Norkem Park High</div>
@@ -1283,6 +1359,7 @@
                 </ul>
             </div>
             
+            <!-- Experience: Sports Committee-->
             <div class="experience-item">
                 <div class="experience-header">
                     <div class="experience-title">Sports Committee Member (Prefect) | Norkem Park High</div>
@@ -1304,12 +1381,12 @@
         let isBannerVisible = false;
 
         //open the banner when bubble is clicked oin
-        jobBubble.addEventListener('click', () => {
+        jobBubble?.addEventListener('click', () => {
             if (!isBannerVisible) {
                 jobBanner.classList.remove('hidden');
                 isBannerVisible = true;
-
-                //add body padding to prevent layout shift and account for banner
+                
+                //add body padding to prevent layout shift and account for the banner (what appears when you click the 'Hire Me!' bubble)
                 document.body.style.paddingTop = jobBanner.offsetHeight + 'px';
 
                 //ajust the theme toggle postion
@@ -1318,7 +1395,7 @@
         });
 
         // close the banner when close button is clicked
-        bannerClose.addEventListener('click', () => {
+        bannerClose?.addEventListener('click', () => {
             if (isBannerVisible) {
                 jobBanner.classList.add('hidden');
                 isBannerVisible = false;
@@ -1363,10 +1440,11 @@
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            localStorage.setItem('theme', newTheme);    // save the preference
             updateThemeIcon(newTheme);
         });
         
+        // updates the theme icon (sun/moon)
         function updateThemeIcon(theme) {
             themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
         }
@@ -1375,6 +1453,7 @@
         function syncWithSystemTheme() {
             const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
             
+            // tracks/listens for system theme changes 
             systemTheme.addEventListener('change', (e) => {
                 if (!localStorage.getItem('theme')) { // Only if user hasn't manually set
                     const newTheme = e.matches ? 'dark' : 'light';
@@ -1387,7 +1466,7 @@
         //initialize system theme sync
         syncWithSystemTheme();
 
-        //skills animations revamped
+        // animations for the skills sextion
         const skillObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1406,7 +1485,7 @@
             });
         }, { threshold: 0.3 });
 
-        //see all the quantified skill items
+        //see all the skill items
         document.querySelectorAll('.skill-item.quantified').forEach(item => {
             skillObserver.observe(item);
         });
@@ -1416,7 +1495,7 @@
         const chatInput = document.getElementById('chatInput');
         const sendButton = document.getElementById('sendButton');
         
-        // The knowledge base for my AI assistant
+        // My knowledge base for my AI assistant
         const knowledgeBase = {
             "skills": "Nhlanhla has skills in C# programming, SQL database development, HTML/CSS for web development, and is currently learning ASP.NET. He also has strong soft skills including problem-solving, communication, leadership, and adaptability.",
             "experience": "Nhlanhla worked as an Analyst at Marsh McLennan from Feb 2022 to Jan 2023. His responsibilities included resolving hardware, software, and access issues, adhering to SLAs with 80%+ on-time resolution for P2/P3 tickets, documenting solutions, and collaborating with team members and end-users.",
@@ -1429,7 +1508,7 @@
             "values": "Nhlanhla values integrity, collaboration, and continuous improvement (GROWTH). He believes in the power of teamwork and is committed to delivering high-quality work while fostering positive relationships with colleagues and stakeholders."
         };
         
-        // The default responses for unrecognized questions
+        // My default responses for questions that dont target my knowledge base
         const defaultResponses = [
             "I'm not sure about that specific detail. Would you like to know about Nhlanhla's skills, experience, or education instead?",
             "I don't have information on that topic. You could ask about Nhlanhla's technical skills or work experience.",
@@ -1466,7 +1545,7 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         
-        // Generate AI response
+        // Generate AI response based on user's message
         function generateResponse(message) {
             const lowerMessage = message.toLowerCase();
             
@@ -1477,7 +1556,7 @@
                 }
             }
             
-            // Check for related terms
+            // Check for related terms/words
             if (lowerMessage.includes('what') && lowerMessage.includes('person')) {
                 return knowledgeBase.personality;
             }
@@ -1501,7 +1580,7 @@
                 return knowledgeBase.aspirations;
             }
             
-            // Return a random default response if no matches
+            // Return a random default response if no matches are found
             return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
         }
         
@@ -1509,7 +1588,7 @@
         sendButton.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                sendMessage();
+                sendMessage();      //send message when the Enter key is pressed
             }
         });
 
