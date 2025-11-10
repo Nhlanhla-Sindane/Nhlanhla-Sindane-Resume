@@ -125,9 +125,9 @@
         .job-status-banner {
             background: linear-gradient(135deg, var(--primary-color), #2c5364);
             color: white;
-            padding: 20px;
+            padding: 15px;          /* testing -- decreased from 20px to 15px for better fit on mobile */
             text-align: center;
-            position: fixed; /* Makes it stay at the top when scrolling through the page, just like Excel's Freeze Pane feature */
+            position: fixed;        /* Makes it stay at the top when scrolling through the page, just like Excel's Freeze Pane feature */
             top: 0;
             left: 0;
             right: 0;
@@ -136,6 +136,13 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transform: translateY(0);
             transition: transform 0.5s ease;
+            width: 100%;            /* Ensures the banner spans the full width of the viewport */
+            box-sizing: border-box; /* Ensures padding is included in the width calculation */
+            max-height: 100vh;      /* Prevents overflow on mobile */
+            overflow-y: auto;       /* Allows scrolling if content is too tall */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .job-status-banner.hidden {
@@ -144,10 +151,44 @@
 
         .status-content {
             display: flex;
+            flex-direction: column; /* Changed to column for better mobile responsiveness */
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px; /* Added gap for better spacing on wrap */
+            text-align: center;
+            gap: 15px;              /* space between text and buttons */
+            width: 100%;
+            /*max-width: 100%; -- testing -- */
+        }
+        .status-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            width: 100%;
+        }
+        .status-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            width: 100%;
+        }
+        .status-icon {
+            font-size: 1.8em;         /* Increased size for better visibility */
+        }
+        .status-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin: 0;
+        }
+        .status-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 300px;       /* Limits the width for better readability */
         }
 
         .status-content > div:nth-child(2) {
@@ -156,35 +197,95 @@
             align-items: center;
             gap: 10px;
         }
-
-        .status-text h3 {
-            margin-bottom: 10px;
-            font-size: 0.8cm;
-        }
-
-        .status-text p {
-            font-size: 0.4cm;
-            opacity: 0.9;
-        }
-
-        .banner-actions {
+        .status-item {
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .status-item:before {
+            content: "•";
+            color: white;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+        .status-text {
+            font-size: 0.9rem;        /* Slightly increased font size for readability */
+            opacity: 0.9;
+            line-height: 1.4;
+            /*
+            width: 100%;
+            text-align: center;
+            */
+        }
+
+        /*
+        .status-text h3 {
+            margin-bottom: 8px;
+            font-size: 1.2rem;      -- Increased font size for better visibility --
+            font-weight: 600;
+            line-height: 1.3;
+            word-wrap: break-word;  -- Ensures long words break to the next line --
+        }
+        */
+
+        /*
+        .status-text p {
+            font-size: 0.9rem;      -- Slightly increased font size for readability --
+            opacity: 0.9;
+            line-height: 1.4;
+            word-wrap: break-word;  -- Ensures long words break to the next line --
+        }
+        */
+
+        .banner-actions {
+            display: flex;
+            flex-direction: column;             /* Changed to column for better mobile responsiveness */
+            align-items: center;
+            /*justify-content: center; */
+            gap: 12px;
+            width: 100%;
+            /* flex-wrap: wrap; */
         }
 
         .cta-button {
             /* background: white; */            /* Changed to be identical/match to Resume Download button */
             /* color: var(--primary-color); */  /* Changed to be identical/match to Resume Download button */
-            padding: 12px 25px;
+            padding: 14px 20px;                 /* increased padding for better touch targets */
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), #2c5364);
+            color: white;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* backdrop-filter: blur(10px); */
+            width: 100%;
+            max-width: 280px;                  /* limits the button width for better appearance */  
+            min-height: 50px;                 /* ensures a minimum height for better touch targets */
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease;
-            white-space: nowrap;    /* this prevents the text from wrapping */
-            background: linear-gradient(135deg, var(--primary-color), #2c5364) !important;
-            color: white !important;
+            
+            /*
+            -- adjusted font size for better readability --
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;                     -- prevents the button from shrinking too much --
+            white-space: nowrap;                -- this prevents the text from wrapping --
+            */
         }
 
         /* glow effect when you hover over the button */
@@ -200,14 +301,15 @@
             color: white;
             font-size: 1.2em;
             cursor: pointer;
-            padding: 10px;
+            padding: 12px;
             border-radius: 50%;                        /* makes the button circular/oval */
-            min-height: 44px;
-            min-width: 44px;
+            min-height: 50px;
+            min-width: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* transition: all 0.3s ease; */
         }
 
         .banner-close:hover {
@@ -762,6 +864,26 @@
         }
 
         @media (max-width: 768px) {
+            .cta-button {
+                padding: 10px 16px;
+                font-size: 0.85em;
+                white-space: normal; /* Allows text to wrap if necessary */
+                min-height: 44px; /* Ensures touch targets are large enough */
+            }
+            .job-status-banner {
+                padding: 12px 15px;
+            }
+            .status-content {
+                gap: 12px;
+            }
+            .status-text h3 {
+                font-size: 1.1rem;
+                margin-bottom: 6px;
+            }
+            .status-text p {
+                font-size: 0.85rem;
+                line-height: 1.3;
+            }
             .job-status-bubble {
                 top: 15px;
                 left: 15px;
@@ -848,8 +970,11 @@
             }
             
             .banner-actions {
-                width: 100%;
+                /* width: 100%;
                 justify-content: center;
+                */
+                flex-direction: column;
+                gap: 8px;
             }
 
             .content-item, .skill-item, .chat-input button {
@@ -926,6 +1051,31 @@
                 font-size: 0.9cm;
             }
         }
+        @media (max-width: 480px) {
+            .job-status-banner {
+                padding: 10px 12px;
+            }
+            
+            .status-text h3 {
+                font-size: 1rem;
+            }
+            
+            .status-text p {
+                font-size: 0.8rem;
+            }
+            
+            .cta-button {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+                width: 100%; /* Full width on very small screens */
+                justify-content: center;
+            }
+            
+            .banner-close {
+                min-height: 40px;
+                min-width: 40px;
+            }
+        }
 
         @media (max-width: 400px) {
             .job-status-bubble {
@@ -964,6 +1114,112 @@
                 font-size: 16px; /* Maintain readability */
             }
         }
+        /* ===== TABLET STYLES (768px and up) ===== */
+@media (min-width: 768px) {
+    .job-status-banner {
+        padding: 20px;
+    }
+    
+    .status-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .status-main {
+        align-items: flex-start;
+        text-align: left;
+        flex: 1;
+    }
+    
+    .status-header {
+        flex-direction: row;
+        text-align: left;
+        justify-content: flex-start;
+    }
+    
+    .status-details {
+        max-width: 100%;
+    }
+    
+    .status-item {
+        max-width: 400px;
+    }
+    
+    .banner-actions {
+        flex-direction: row;
+        width: auto;
+        gap: 15px;
+    }
+    
+    .cta-button {
+        width: auto;
+        min-height: 44px;
+    }
+}
+
+/* ===== DESKTOP STYLES (1024px and up) ===== */
+@media (min-width: 1024px) {
+    .job-status-banner {
+        padding: 20px 40px;
+    }
+    
+    .status-title {
+        font-size: 1.3rem;
+    }
+    
+    .status-text {
+        font-size: 1rem;
+    }
+}
+
+/* ===== SPECIFIC MOBILE FIXES ===== */
+
+/* Very small phones (like your Samsung A26) */
+@media (max-width: 360px) {
+    .job-status-banner {
+        padding: 12px;
+    }
+    
+    .status-title {
+        font-size: 1rem;
+    }
+    
+    .status-item {
+        padding: 10px 12px;
+    }
+    
+    .status-text {
+        font-size: 0.85rem;
+    }
+    
+    .cta-button {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        max-width: 260px;
+    }
+}
+
+/* Fix for mobile viewport height issues */
+@media (max-height: 700px) {
+    .job-status-banner {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .status-content {
+        gap: 12px;
+    }
+    
+    .status-main {
+        gap: 10px;
+    }
+    
+    .status-details {
+        gap: 6px;
+    }
+}
     </style>
 </head>
 <body>
@@ -978,28 +1234,36 @@
     </div>
 
     <!-- Expanded Job Status Banner -->
-    <section class="job-status-banner hidden" id="jobBanner">
-        <div class="status-content">
-            <div class="status-text">
-                <h3>🚀 Seeking AIT Training Opportunity</h3>
-                <p>Completed theoretical studies • Available immediately • Ready to contribute to your team</p>
+<section class="job-status-banner hidden" id="jobBanner">
+    <div class="status-content">
+        <div class="status-main">
+            <div class="status-header">
+                <div class="status-icon">🚀</div>
+                <h3 class="status-title">Seeking AIT Training Opportunity</h3>
             </div>
-            <div>
-                <a href="Letter Of Confirmation.pdf" download="Letter-Of-Confirmation.pdf" class="cta-button">
+            <div class="status-details">
+                <div class="status-item">
+                    <span class="status-text">Completed theoretical studies</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-text">Available immediately</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-text">Ready to contribute to your team</span>
+                </div>
+            </div>
+        </div>
+        <div class="banner-actions">
+            <a href="Letter Of Confirmation.pdf" download="Letter-Of-Confirmation.pdf" class="cta-button">
                 <i class="fas fa-file-pdf"></i>
                 <span>Download Letter of Confirmation</span>
-                </a>
-            </div>
-            
-            <div class="banner-actions">
-                <!--<a href="mailto:Nhlanhla.Sindane13@gmail.com" class="cta-button">Contact Me</a> -->
-                <button class="banner-close" id="bannerClose" aria-label="Close banner">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
+            </a>
+            <button class="banner-close" id="bannerClose">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Theme Toggle Button && Moon/Sun Icon -->
     <div class="theme-toggle" id="themeToggle">
@@ -1380,6 +1644,56 @@
 
         let isBannerVisible = false;
 
+                                                                                    // Update the banner opening function to handle mobile better
+                                                                                    jobBubble?.addEventListener('click', () => {
+                                                                                        if (!isBannerVisible) {
+                                                                                            jobBanner.classList.remove('hidden');
+                                                                                            isBannerVisible = true;
+                                                                                            
+                                                                                            // Calculate appropriate padding for mobile
+                                                                                            const bannerHeight = jobBanner.offsetHeight;
+                                                                                            document.body.style.paddingTop = bannerHeight + 'px';
+
+                                                                                            // Adjust theme toggle position dynamically
+                                                                                            const themeToggle = document.querySelector('.theme-toggle');
+                                                                                            if (window.innerWidth <= 768) {
+                                                                                                themeToggle.style.top = (bannerHeight + 10) + 'px';
+                                                                                            } else {
+                                                                                                themeToggle.style.top = (bannerHeight + 20) + 'px';
+                                                                                            }
+                                                                                            
+                                                                                            // Prevent body scroll when banner is open on mobile
+                                                                                            if (window.innerWidth <= 768) {
+                                                                                                document.body.style.overflow = 'hidden';
+                                                                                            }
+                                                                                        }
+                                                                                    });
+
+                                                                                    // Update the banner closing function
+                                                                                    bannerClose?.addEventListener('click', () => {
+                                                                                        if (isBannerVisible) {
+                                                                                            jobBanner.classList.add('hidden');
+                                                                                            isBannerVisible = false;
+
+                                                                                            // Remove body padding
+                                                                                            document.body.style.paddingTop = '0';
+
+                                                                                            // Reset theme toggle position
+                                                                                            document.querySelector('.theme-toggle').style.top = '20px';
+                                                                                            
+                                                                                            // Restore body scroll
+                                                                                            document.body.style.overflow = '';
+                                                                                        }
+                                                                                    });
+
+        /*
+        // Job Status Bubble & Banner Functionality
+        const jobBubble = document.getElementById('jobBubble');
+        const jobBanner = document.getElementById('jobBanner');
+        const bannerClose = document.getElementById('bannerClose');
+
+        let isBannerVisible = false;
+
         //open the banner when bubble is clicked oin
         jobBubble?.addEventListener('click', () => {
             if (!isBannerVisible) {
@@ -1407,6 +1721,7 @@
                 document.querySelector('.theme-toggle').style.top = '20px';
             }
         });
+        */
 
         // allow clicking outside the banner to close it
         document.addEventListener('click', (event) => {
