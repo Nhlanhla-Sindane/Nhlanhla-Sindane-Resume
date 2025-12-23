@@ -101,26 +101,6 @@
             border-radius: 0; /* ensure text container does not have borders */
         }
 
-        /* When you receive a notification -- Apps show that red badge with the number of notifications in it -- This is to add that, however did not like the look so removed/null -- might bring back later
-            .bubble-badge {
-            background: #ff6b6b;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7em;
-            font-weight: bold;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            animation: pulse-badge 1.5s infinite;
-            border: none;
-        } 
-        */
-
         /* Expanded Job Status Banner (opens when you click the bubble) */
         .job-status-banner {
             background: linear-gradient(135deg, var(--primary-color), #2c5364);
@@ -220,44 +200,17 @@
             font-size: 0.9rem;        /* Slightly increased font size for readability */
             opacity: 0.9;
             line-height: 1.4;
-            /*
-            width: 100%;
-            text-align: center;
-            */
         }
-
-        /*
-        .status-text h3 {
-            margin-bottom: 8px;
-            font-size: 1.2rem;      -- Increased font size for better visibility --
-            font-weight: 600;
-            line-height: 1.3;
-            word-wrap: break-word;  -- Ensures long words break to the next line --
-        }
-        */
-
-        /*
-        .status-text p {
-            font-size: 0.9rem;      -- Slightly increased font size for readability --
-            opacity: 0.9;
-            line-height: 1.4;
-            word-wrap: break-word;  -- Ensures long words break to the next line --
-        }
-        */
 
         .banner-actions {
             display: flex;
             flex-direction: column;             /* Changed to column for better mobile responsiveness */
             align-items: center;
-            /*justify-content: center; */
             gap: 12px;
             width: 100%;
-            /* flex-wrap: wrap; */
         }
 
         .cta-button {
-            /* background: white; */            /* Changed to be identical/match to Resume Download button */
-            /* color: var(--primary-color); */  /* Changed to be identical/match to Resume Download button */
             padding: 14px 20px;                 /* increased padding for better touch targets */
             border-radius: 30px;
             text-decoration: none;
@@ -276,16 +229,6 @@
             min-height: 50px;                 /* ensures a minimum height for better touch targets */
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease;
-            
-            /*
-            -- adjusted font size for better readability --
-            text-align: center;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;                     -- prevents the button from shrinking too much --
-            white-space: nowrap;                -- this prevents the text from wrapping --
-            */
         }
 
         /* glow effect when you hover over the button */
@@ -489,17 +432,6 @@
             width: 30px;
             text-align: center;
             color: var(--primary-color);
-        }
-        .resume-download {
-            background: linear-gradient(135deg, var(--primary-color), #2c5364) !important;
-            color: white !important;
-        }
-        .resume-download i {
-            color: white !important;
-        }
-        .resume-download:hover {
-            box-shadow: 0 8px 25px rgba(77, 160, 255, 0.4) !important;
-            transform: translateY(-3px) !important;
         }
 
         .professional-summary {
@@ -1571,7 +1503,7 @@
         <div class="bubble-content">
             <div class="bubble-icon">🚀</div>
             <div class="bubble-text">Hire Me!</div>
-            <!--<div class="bubble-badge">1</div> -->
+            <!--<div class="bubble-badge">1</div> -- Cancelled out, caused issues -->
         </div>
     </div>
 
@@ -1596,10 +1528,17 @@
             </div>
         </div>
         <div class="banner-actions">
+        <!-- Old -- not secured/safe from bots
             <a href="Letter Of Confirmation.pdf" download="Letter-Of-Confirmation.pdf" class="cta-button">
                 <i class="fas fa-file-pdf"></i>
                 <span>Download Letter of Confirmation</span>
             </a>
+        -->
+            <a href="#" class="cta-button" id="letter-download">
+                <i class="fas fa-file-pdf"></i>
+                <span>Download Letter of Confirmation</span>
+            </a>
+
             <button class="banner-close" id="bannerClose">
                 <i class="fas fa-times"></i>
             </button>
@@ -1625,15 +1564,24 @@
                         <i class="fas fa-user"></i>
                         <span>Nhlanhla Sindane</span>
                     </div>
-                    <a href="mailto:Nhlanhla.Sindane13@gmail.com" class="contact-item">
+                    <!-- Old -- not secured/safe from bots
+                        <a href="mailto:Nhlanhla.Sindane13@gmail.com" class="contact-item">
+                        email reverse: moc.liamg@31enadniS.alhnalhn  
+                            <i class="fas fa-envelope"></i>
+                            <span>Nhlanhla.Sindane13@gmail.com</span>
+                        </a>
+                    -->
+
+                    <a href="#" class="contact-item" id="resume-contact">
                         <i class="fas fa-envelope"></i>
-                        <span>Nhlanhla.Sindane13@gmail.com</span>
+                        <span>nhlanhla.sindane13@gmail.com</span>
                     </a>
+
                     <a href="tel:+27614203184" class="contact-item">
                         <i class="fas fa-phone"></i>
                         <span>061 420 3184</span>
                     </a>
-                    <a href="Nhlanhla Sindane_Resume.pdf" download="Nhlanhla-Sindane-Resume.pdf" class="contact-item resume-download">
+                    <a href="#" class="contact-item resume-download" id="resume-download">
                         <i class="fas fa-file-pdf"></i>
                         <span>Download Resume</span>
                     </a>
@@ -1736,14 +1684,6 @@
                     <div class="skill-evidence">
                         <small>Evidence: Console apps, Windows Forms, ADO.NET integration.</small>
                     </div>
-                    <!--
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-level="70"></div>
-                    </div>
-                    <div class="skill-evidence">
-                        <small>Evidence: Console apps, Windows Forms, ADO.NET integration</small>
-                    </div>
-                    -->
                 </div>
                 
                 <!-- Progress Bar: SQL & Database Design -->
@@ -1840,16 +1780,6 @@
                     <div class="skill-evidence">
                         <small>Evidence: Database design and query optimization</small>
                     </div>
-
-                    <!-- 
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-level="70"></div>
-                    </div>
-                    <div class="skill-evidence">
-                        <small>Evidence: Database design and query optimization</small>
-                    </div>
-                    -->
-
                 </div>
             
                 <!-- Progress Bar: Visual Studio & VS Code -->
@@ -1876,13 +1806,6 @@
                     <div class="skill-evidence">
                         <small>Evidence: Primary development environment</small>
                     </div>
-
-                    <!--
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-level="80"></div>
-                    </div>
-                    -->
-                    
                 </div>
 
                 <!-- Progress Bar: ADO.NET -->
@@ -1909,12 +1832,6 @@
                     <div class="skill-evidence">
                         <small>Evidence: Database integration in C# applications</small>
                     </div>
-
-                    <!--
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-level="65"></div>
-                    </div>
-                    -->
                 </div>
 
                 <!-- Progress Bar: Debugging & Troubleshooting-->
@@ -1977,12 +1894,6 @@
                         <div class="skill-evidence">
                             <small>Evidence: Team collaboration, client interactions</small>
                         </div>
-
-                        <!--
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-level="90"></div>
-                        </div>
-                        -->
                     </div>
 
                     <!-- Progress Bar: Problem-solving -->
@@ -2009,11 +1920,6 @@
                         <div class="skill-evidence">
                             <small>Evidence: Technical troubleshooting, analytical thinking</small>
                         </div>
-                        <!--
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-level="85"></div>
-                        </div>
-                        -->
                     </div> 
 
                     <!-- Progress Bar: Leadership & Teamwork -->
@@ -2040,13 +1946,6 @@
                         <div class="skill-evidence">
                             <small>Evidence: Chess club founder, sports committee</small>
                         </div>
-
-                        <!--
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-level="75"></div>
-                        </div>
-                        -->
-                        
                     </div>
 
                     <!-- Progress Bar: Adaptability -->
@@ -2073,11 +1972,6 @@
                         <div class="skill-evidence">
                             <small>Evidence: Learning new technologies quickly</small>
                         </div>
-                        <!--
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-level="85"></div>
-                        </div>
-                        -->
                     </div>
                 </div>
             </div>
@@ -2173,84 +2067,47 @@
 
         let isBannerVisible = false;
 
-                                                                                    // Update the banner opening function to handle mobile better
-                                                                                    jobBubble?.addEventListener('click', () => {
-                                                                                        if (!isBannerVisible) {
-                                                                                            jobBanner.classList.remove('hidden');
-                                                                                            isBannerVisible = true;
-                                                                                            
-                                                                                            // Calculate appropriate padding for mobile
-                                                                                            const bannerHeight = jobBanner.offsetHeight;
-                                                                                            document.body.style.paddingTop = bannerHeight + 'px';
-
-                                                                                            // Adjust theme toggle position dynamically
-                                                                                            const themeToggle = document.querySelector('.theme-toggle');
-                                                                                            if (window.innerWidth <= 768) {
-                                                                                                themeToggle.style.top = (bannerHeight + 10) + 'px';
-                                                                                            } else {
-                                                                                                themeToggle.style.top = (bannerHeight + 20) + 'px';
-                                                                                            }
-                                                                                            
-                                                                                            // Prevent body scroll when banner is open on mobile
-                                                                                            if (window.innerWidth <= 768) {
-                                                                                                document.body.style.overflow = 'hidden';
-                                                                                            }
-                                                                                        }
-                                                                                    });
-
-                                                                                    // Update the banner closing function
-                                                                                    bannerClose?.addEventListener('click', () => {
-                                                                                        if (isBannerVisible) {
-                                                                                            jobBanner.classList.add('hidden');
-                                                                                            isBannerVisible = false;
-
-                                                                                            // Remove body padding
-                                                                                            document.body.style.paddingTop = '0';
-
-                                                                                            // Reset theme toggle position
-                                                                                            document.querySelector('.theme-toggle').style.top = '20px';
-                                                                                            
-                                                                                            // Restore body scroll
-                                                                                            document.body.style.overflow = '';
-                                                                                        }
-                                                                                    });
-
-        /*
-        // Job Status Bubble & Banner Functionality
-        const jobBubble = document.getElementById('jobBubble');
-        const jobBanner = document.getElementById('jobBanner');
-        const bannerClose = document.getElementById('bannerClose');
-
-        let isBannerVisible = false;
-
-        //open the banner when bubble is clicked oin
+        // Update the banner opening function to handle mobile better
         jobBubble?.addEventListener('click', () => {
             if (!isBannerVisible) {
                 jobBanner.classList.remove('hidden');
                 isBannerVisible = true;
                 
-                //add body padding to prevent layout shift and account for the banner (what appears when you click the 'Hire Me!' bubble)
-                document.body.style.paddingTop = jobBanner.offsetHeight + 'px';
+                // Calculate appropriate padding for mobile
+                const bannerHeight = jobBanner.offsetHeight;
+                document.body.style.paddingTop = bannerHeight + 'px';
 
-                //ajust the theme toggle postion
-                document.querySelector('.theme-toggle').style.top = (jobBanner.offsetHeight + 20) + 'px';
+                // Adjust theme toggle position dynamically
+                const themeToggle = document.querySelector('.theme-toggle');
+                if (window.innerWidth <= 768) {
+                    themeToggle.style.top = (bannerHeight + 10) + 'px';
+                } else {
+                    themeToggle.style.top = (bannerHeight + 20) + 'px';
+                }
+                
+                // Prevent body scroll when banner is open on mobile
+                if (window.innerWidth <= 768) {
+                    document.body.style.overflow = 'hidden';
+                }
             }
         });
 
-        // close the banner when close button is clicked
+        // Update the banner closing function
         bannerClose?.addEventListener('click', () => {
             if (isBannerVisible) {
                 jobBanner.classList.add('hidden');
                 isBannerVisible = false;
 
-                //remove body padding
+                // Remove body padding
                 document.body.style.paddingTop = '0';
 
-                //reset theme toggle position
+                // Reset theme toggle position
                 document.querySelector('.theme-toggle').style.top = '20px';
+                
+                // Restore body scroll
+                document.body.style.overflow = '';
             }
         });
-        */
 
         // allow clicking outside the banner to close it
         document.addEventListener('click', (event) => {
@@ -2311,7 +2168,6 @@
         syncWithSystemTheme();
 
         // Enhanced animations for different track types
-        // Enhanced animations for different track types
 const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2359,72 +2215,6 @@ document.querySelectorAll('.skill-item.quantified').forEach(item => {
     skillObserver.observe(item);
 });
 
-        /*
-        //race animantions for the skills section
-        // Enhanced animations for the skills section with racing cars
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-
-                    // Animate the racing cars to their data-level position
-                    const car = entry.target.querySelector('.car');
-                    if (car) {
-                        const level = car.getAttribute('data-level');
-                        const track = car.parentElement;
-                        const trackWidth = track.offsetWidth - 40; // Account for car width and padding
-                        const targetPosition = (level / 100) * trackWidth;
-                        
-                        // Add animation class for bounce effect
-                        car.classList.add('animated');
-                        
-                        // Animate car to target position
-                        setTimeout(() => {
-                            car.style.left = `${targetPosition}px`;
-                            
-                            // Remove bounce animation after car reaches destination
-                            setTimeout(() => {
-                                car.classList.remove('animated');
-                            }, 1500);
-                        }, 300);
-                    }
-                }
-            });
-        }, { threshold: 0.3 });
-
-        // Observe all the skill items
-        document.querySelectorAll('.skill-item.quantified').forEach(item => {
-            skillObserver.observe(item);
-        });
-        */
-
-        // animations for the skills sextion
-        /*
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-
-                    //animate the progress bars to fill to their data-level
-                    const progressBar = entry.target.querySelector('.skill-progress');
-                    if (progressBar) {
-                        const level = progressBar.getAttribute('data-level');
-                        setTimeout(() => {
-                            progressBar.style.width = level + '%';
-                        }, 300); // slight delay for a nice effect
-                    }
-                }
-            });
-        }, { threshold: 0.3 });
-
-        //see all the skill items
-        document.querySelectorAll('.skill-item.quantified').forEach(item => {
-            skillObserver.observe(item);
-        });
-        */
-
         // My AI Chat Functionality
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
@@ -2469,7 +2259,7 @@ document.querySelectorAll('.skill-item.quantified').forEach(item => {
             }
         }
         
-        // Add message to chat
+        // Add message to ai chat
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${sender}-message`;
@@ -2480,7 +2270,7 @@ document.querySelectorAll('.skill-item.quantified').forEach(item => {
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         
-        // Generate AI response based on user's message
+        // Generate AI response based on the user's message
         function generateResponse(message) {
             const lowerMessage = message.toLowerCase();
             
@@ -2519,13 +2309,76 @@ document.querySelectorAll('.skill-item.quantified').forEach(item => {
             return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
         }
         
-        // Event listeners for chat
+        // Event listeners for ai chat
         sendButton.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                sendMessage();      //send message when the Enter key is pressed
+                sendMessage();      //send message when the enter key is pressed
             }
         });
+
+        // Securing from bots and scrapers (implement more advanced techniques in future)
+        document.addEventListener('DOMContentLoaded', function() {
+            // have our data in base64 to make it hard to find for bots
+            const data = {
+                email: atob('bmhsYW5obGEuc2luZGFuZTEzQGdtYWlsLmNvbQ=='),// nhlanhla.sindane13@gmail.com
+                resume: atob('TmhsYW5obGEgU2luZGFuZV9SZXN1bWUucGRm'), // Nhlanhla Sindane_Resume.pdf
+                letter: atob('TGV0dGVyIE9mIENvbmZpcm1hdGlvbi5wZGY') // Letter Of Confirmation.pdf
+            };
+
+            // email securing
+            const email = document.getElementById('resume-contact');
+            if (email) {
+                email.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = "mailto:" + data.email;
+                });
+
+                email.addEventListener('mouseenter', function() {
+                    this.title = "Send email to: " + data.email;
+                });
+            }
+
+            //resume securing
+            const resume = document.getElementById('resume-download');
+            if (resume) {
+                resume.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const link = document.createElement('a');
+                    link.href = data.resume;
+                    link.download = 'Nhlanhla-Sindane-Resume.pdf';
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+
+            //letter securing
+            const letter = document.getElementById('letter-download');
+            if (letter) {
+                letter.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const link = document.createElement('a');
+                    link.href = data.letter;
+                    link.download = 'Letter-Of-Confirmation.pdf';
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+
+            // making the icons clickable
+            document.querySelectorAll('#resume-contact i, #resume-download i, #letter-download i').forEach(icon => {
+                icon.style.cursor = 'pointer';
+                icon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.closest('a').click();
+                });
+            });
+    });
 
     </script>
 </body>
